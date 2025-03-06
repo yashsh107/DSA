@@ -67,6 +67,33 @@ class DoubleLinkedList :
             itr = itr.next        
 
         print(count)    
+        return count
+
+    def insert_values(self, list) :
+        for data in list :
+            self.insert_at_end(data)  
+
+    def remove_at(self, index) :
+        if index < 0 or index >= self.get_lenght() :
+            raise Exception("invalid index")
+        
+        if index == 0 :
+            itr = self.head
+
+            itr.next.pre = None
+            self.head = itr.next
+            return
+
+        count = 0
+        itr = self.head
+
+        while itr :
+            if count == index - 1 :
+                itr.next.next.pre = itr
+                itr.next = itr.next.next 
+                break
+            count += 1
+            itr = itr.next   
 
 
 
@@ -76,10 +103,12 @@ if __name__ == '__main__' :
     # dll.insert_at_begining(10)
     # dll.insert_at_begining(20)
     # dll.insert_at_begining(30)
-    dll.insert_at_end(50)
-    dll.insert_at_end(60)
-    dll.insert_at_end(70)
-    dll.insert_at_end(80)
-    dll.insert_at(40, 2)
+    # dll.insert_at_end(50)
+    # dll.insert_at_end(60)
+    # dll.insert_at_end(70)
+    # dll.insert_at_end(80)
+    # dll.insert_at(40, 2)
+    # dll.get_lenght()
+    dll.insert_values(["yash", 10, 20, "python", "code"])
+    dll.remove_at(2)
     dll.print()
-    dll.get_lenght()
